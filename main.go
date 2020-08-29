@@ -13,7 +13,7 @@ func main() {
 
 	flag.Parse()
 
-	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		// We only need the files
 		if info.IsDir() {
 			return nil
@@ -22,4 +22,8 @@ func main() {
 		fmt.Println(path)
 		return nil
 	})
+
+	if err != nil {
+		panic(err)
+	}
 }
