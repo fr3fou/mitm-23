@@ -12,13 +12,16 @@ import (
 	"github.com/asticode/go-astisub"
 )
 
-var twentyThree = []string{
+var whitelist = []string{
 	"23",
 	"Twenty Three",
 	"Twenty-Three",
 	"twenty three",
 	"twenty-three",
+	"two three",
+	"two-three",
 }
+
 var blacklist = []string{
 	"Synchro to version",
 }
@@ -63,7 +66,7 @@ func main() {
 	for i, sub := range subs {
 		for _, item := range sub.Items {
 			str := item.String()
-			if containsArr(str, twentyThree) && !containsArr(str, blacklist) {
+			if containsArr(str, whitelist) && !containsArr(str, blacklist) {
 				fmt.Println(printLine(*item))
 				fmt.Printf("found in Episode %d\n", i+1)
 				fmt.Println()
@@ -88,8 +91,10 @@ func containsArr(str string, arr []string) bool {
 
 func printLine(item astisub.Item) string {
 	var os []string
+
 	for _, l := range item.Lines {
 		os = append(os, l.String())
 	}
+
 	return strings.Join(os, "\n")
 }
