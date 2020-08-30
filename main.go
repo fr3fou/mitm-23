@@ -61,11 +61,11 @@ func main() {
 	log.Printf("Beginning to count occurrences of 23...")
 	counter := 0
 	for i, sub := range subs {
-		for _, line := range sub.Items {
-			str := line.String()
+		for _, item := range sub.Items {
+			str := item.String()
 			if containsArr(str, twentyThree) && !containsArr(str, blacklist) {
-				fmt.Println(str)
-				fmt.Println(i)
+				fmt.Println(printLine(*item))
+				fmt.Printf("found in Episode %d\n", i+1)
 				fmt.Println()
 				counter++
 			}
@@ -84,4 +84,12 @@ func containsArr(str string, arr []string) bool {
 	}
 
 	return false
+}
+
+func printLine(item astisub.Item) string {
+	var os []string
+	for _, l := range item.Lines {
+		os = append(os, l.String())
+	}
+	return strings.Join(os, "\n")
 }
