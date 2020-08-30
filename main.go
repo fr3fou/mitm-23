@@ -68,7 +68,7 @@ func main() {
 			str := item.String()
 			if containsArr(str, whitelist) && !containsArr(str, blacklist) {
 				fmt.Println(printLine(*item))
-				fmt.Printf("found in Episode %d at %s", i+1, item.StartAt)
+				fmt.Printf("found in Episode %d at %s\n", i+1, item.StartAt)
 				fmt.Println()
 				counter++
 			}
