@@ -2,13 +2,19 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/asticode/go-astisub"
 )
+
+var twentyThree = []string{
+	"23",
+	"Twenty Three",
+	"Twenty-Three",
+}
 
 func main() {
 	dir := ""
@@ -18,6 +24,7 @@ func main() {
 
 	lines := []string{}
 	start := time.Now()
+	log.Printf("Beginning parsing SRT files in %s", dir)
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		// We only need the files
 		if info.IsDir() {
@@ -40,8 +47,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(time.Since(start))
-	fmt.Println(len(lines))
+	log.Printf("Parsed SRT files. Time elapsed: %s.", time.Since(start))
 }
-
-// func contains([])
