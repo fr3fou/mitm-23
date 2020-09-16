@@ -14,10 +14,15 @@ import (
 
 var whitelist = []string{
 	"23",
+	"23rd",
 	"Twenty Three",
 	"Twenty-Three",
 	"twenty three",
 	"twenty-three",
+	"Twenty Third",
+	"twenty third",
+	"twenty-third",
+	"Twenty-Third",
 	"two three",
 	"two-three",
 }
